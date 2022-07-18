@@ -62,7 +62,7 @@ namespace Orthanc
     // path /= std::string(&uuid[0], &uuid[2]);
     // path /= std::string(&uuid[2], &uuid[4]);
     path /= uuid;
-    std::cout<<"path = "<<path;
+    std::cout<<"\npath = "<<path;
 
 
 #if BOOST_HAS_FILESYSTEM_V3 == 1
