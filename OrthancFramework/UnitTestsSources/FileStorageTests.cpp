@@ -42,7 +42,7 @@
 
 using namespace Orthanc;
 
-std::string instance_ = "Hello world";
+std::string instance = "Hello world";
 
 static void StringToVector(std::vector<uint8_t>& v,
                            const std::string& s)
@@ -132,7 +132,7 @@ TEST(StorageAccessor, NoCompression)
 
   std::string data = "Hello world";
   
-  FileInfo info = accessor.Write(data, FileContentType_Dicom, CompressionType_None, true, instance_);
+  FileInfo info = accessor.Write(data, FileContentType_Dicom, CompressionType_None, true, instance);
   
   std::string r;
   accessor.Read(r, info);
@@ -154,7 +154,7 @@ TEST(StorageAccessor, Compression)
   StorageAccessor accessor(s, &cache);
 
   std::string data = "Hello world";
-  FileInfo info = accessor.Write(data, FileContentType_Dicom, CompressionType_ZlibWithSize, true, instance_);
+  FileInfo info = accessor.Write(data, FileContentType_Dicom, CompressionType_ZlibWithSize, true, instance);
   
   std::string r;
   accessor.Read(r, info);
@@ -178,8 +178,8 @@ TEST(StorageAccessor, Mix)
   std::string compressedData = "Hello";
   std::string uncompressedData = "HelloWorld";
 
-  FileInfo compressedInfo = accessor.Write(compressedData, FileContentType_Dicom, CompressionType_ZlibWithSize, false, instance_);  
-  FileInfo uncompressedInfo = accessor.Write(uncompressedData, FileContentType_Dicom, CompressionType_None, false, instance_);
+  FileInfo compressedInfo = accessor.Write(compressedData, FileContentType_Dicom, CompressionType_ZlibWithSize, false, instance);  
+  FileInfo uncompressedInfo = accessor.Write(uncompressedData, FileContentType_Dicom, CompressionType_None, false, instance);
   
   accessor.Read(r, compressedInfo);
   ASSERT_EQ(compressedData, r);
